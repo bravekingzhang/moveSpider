@@ -13,6 +13,9 @@ generate out.html, and out.json
 * step 3
 make an android app,user out.json ,show move list to me
 
+#秀一下在android app上看到的货
+![image](https://github.com/bravekingzhang/yours/blob/master/screenshot/device-2015-12-27-160354.png)
+
 
 #todo
 
