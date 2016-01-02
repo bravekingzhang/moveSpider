@@ -15,7 +15,7 @@ class SpiderMain:
         i = 0
         while self.urls.has_new_url():
             try:
-                if i > 100:
+                if i > 1000:
                     break
                 current_url = self.urls.offer_new_url()
                 print "current task is %d donwload url is %s" % (i, current_url)
@@ -31,6 +31,6 @@ class SpiderMain:
 
 
 if __name__ == '__main__':
-    start_url = "http://www.dytt8.net/html/gndy/dyzz/20151220/49782.html"
+    start_url = "http://www.dytt8.net/"
     spiderObj = SpiderMain()
     spiderObj.clawer(start_url)

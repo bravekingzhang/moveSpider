@@ -8,7 +8,8 @@ class MoveOutputer:
         pass
 
     def collect_data(self, content):
-        self.contents.append(content)
+        if content is not None:
+            self.contents.append(content)
 
     def out_put_data(self):
         opener = open("out.html", "w")
