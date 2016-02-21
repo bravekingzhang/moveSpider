@@ -20,7 +20,10 @@ class HtmlDownloader:
         response = urllib2.urlopen(req)
         if response.code == 200:
             try:
-                return response.read().decode('gbk').encode('utf-8')
+                if url.startswith("http://www.dytt8.net/"):
+                    return response.read().decode('gbk').encode('utf-8')
+                else:
+                    return response.read()
             except:
                 return None
         else:

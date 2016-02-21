@@ -1,16 +1,20 @@
+__author__ = 'brzhang'
+
+
 # -*- coding: utf-8 -*-
 import urlparse
 from bs4 import BeautifulSoup
 import re
 
 
-class HtmlParser:
+class QiDianHtmlParser():
     def __init__(self):
         pass
 
     def _get_new_links(self, url, soup):
         links_to_be_return = set()
-        links = soup.findAll("a", href=re.compile(r"/html/gndy/[a-z]+/\d+/\d+.html"))
+        # Book/3681810.aspx
+        links = soup.findAll("a", href=re.compile(r"/Book/\d+.aspx"))
         for link in links:
             links_to_be_return.add(urlparse.urljoin(url, link["href"]))
         return links_to_be_return
@@ -19,9 +23,11 @@ class HtmlParser:
         content_to_be_return = {}
         content_to_be_return['url'] = url
         try:
-            content_to_be_return['move_name'] = soup.find("div", class_="bd3r").find("div", class_="co_area2").find(
-                "div", class_="title_all").text
-            content_to_be_return['move_pic'] = soup.find("div", id="Zoom").find("span").find("p").find("img")["src"]
+            content_to_be_return['book_name'] = soup.find("div", class_="title").find("h1", itemprop="name").text
+            content_to_be_return['book_pic'] = \
+            soup.find("div", class_="box_cont").find("div", class_="book_pic").find("a").find("img")["src"]
+            content_to_be_return['book_some_detail'] = soup.find("div", class_="intro").find("div", class_="txt").find(
+                "span").text
         except:
             print "not content to be output"
             return None
